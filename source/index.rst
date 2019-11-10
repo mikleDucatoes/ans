@@ -13,4 +13,6 @@
    introduction
    summary-api
    wifi-lan-connection
+   troubleshooting
+   faq
 
