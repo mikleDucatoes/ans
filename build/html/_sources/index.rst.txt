@@ -1,0 +1,18 @@
+.. iWine_doc documentation master file, created by
+   sphinx-quickstart on Fri Nov  8 02:01:49 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Документация API iWine
+=====================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: СОДЕРЖАНИЕ:
+
+   introduction
+   summary-api
+   wifi-lan-connection
+   troubleshooting
+   faq
+
