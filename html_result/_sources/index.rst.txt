@@ -3,43 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to iWine_doc's documentation!
+Документация API iWine
 =====================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: СОДЕРЖАНИЕ:
 
-   
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-
-СОДЕРЖАНИЕ
-==========
-
-* :ref:`introduction` Введение
-* :ref:`summary-api` Использоание API
-* :ref:`wifi-lan-connection` Подключение к WiFi
-* :ref:`troubleshooting` Возможные проблемы
-* :ref:`faq` Вопросы и ответы
-* :ref:`ex-cont` Примеры и контакты
-
- Формирование подписи
-
- Обращение к REST API
-
- HTTP-GET методы
-
- HTTP-POST методы
-
- Обработка ошибок
-
- Справка
+   introduction
+   summary-api
+   wifi-lan-connection
 
