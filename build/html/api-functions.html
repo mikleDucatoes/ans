@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Подробное описание API &#8212; документация iWine_doc 0.0.1</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Типичные проблемы и их решения" href="troubleshooting.html" />
+    <link rel="prev" title="Генерация удостоверяющей подписи" href="sig-generation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>Подробное описание API<a class="headerlink" href="#api" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="get">
+<h2>GET:<a class="headerlink" href="#get" title="Ссылка на этот заголовок">¶</a></h2>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Сигнатуры методов должны содержать обязательный параметр – подпись Sig.
+Sig – представляет собой набор символов в формате UTF-8.</p>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>метод для получения информации об объеме налитого в iWine вина:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl class="simple">
+<dt>Сигнатура метода</dt><dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">float</span>&#160; <span class="pre">getVolume({‘response_form’:‘единицы</span> <span class="pre">измерения’,</span> <span class="pre">‘Sig’:’value’,})</span></code></dt><dd><p>float - 2 знака после запятой
+в метод передаем на вход либо pr – процент заполнения емкости iWine.
+Так как запросы обрабатываются асинхронно, то следует учесть время ожидания отклика от сервера – latency.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>метод для получения информации о содержании алкоголя в вине, налитом в iWine:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl class="simple">
+<dt>Сигнатура метода</dt><dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">getAlcohol({‘response_form’:‘единицы</span> <span class="pre">измерения</span> <span class="pre">–</span> <span class="pre">‘ppm’</span> <span class="pre">–</span> <span class="pre">промилле,</span> <span class="pre">либо</span> <span class="pre">‘mg/L’’,</span> <span class="pre">‘Sig’:’value’,})</span></code></dt><dd><p>float - 2 знака после запятой
+Так как запросы обрабатываются асинхронно, то следует учесть время ожидания отклика от сервера – latency.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>метод для получения информации о содержании сахара в вине, налитом в iWine:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl>
+<dt>Сигнатура метода</dt><dd><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">uint</span>&#160; <span class="pre">getSugar({‘response_form’:‘единицы</span> <span class="pre">измерения</span> <span class="pre">–</span> <span class="pre">‘Blg’</span> <span class="pre">–</span> <span class="pre">градус</span> <span class="pre">Баллинга,</span> <span class="pre">’,</span> <span class="pre">‘Sig’:’value’,})</span></code></dt><dd><dl class="simple">
+<dt>unsigned int – беззнаковое целое</dt><dd><p>градус Баллинга – единица концентрации массовой доли сухих веществ в растворе.</p>
+</dd>
+</dl>
+<p>Так как запросы обрабатываются асинхронно, то следует учесть время ожидания отклика от сервера – latency.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>метод для получения информации о текущем значении температуры вина, налитого в iWine:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl>
+<dt>Сигнатура метода</dt><dd><p><code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">getCurrentTemperature({‘response_form’:‘единицы</span> <span class="pre">измерения</span> <span class="pre">–</span> <span class="pre">C</span> <span class="pre">–</span> <span class="pre">градус</span> <span class="pre">Цельсия,</span> <span class="pre">K</span> <span class="pre">–</span> <span class="pre">градус</span> <span class="pre">Кельвина’,</span> <span class="pre">‘Sig’:‘value’,})</span></code></p>
+<dl class="simple">
+<dt>float - 2 знака после запятой</dt><dd><p>градус Кельвина – единица наиболее привычная в технических документах, градусы Цельсия gKel=gCels+273.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>метод для получения информации о цвете вина, налитого в iWine:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl class="simple">
+<dt>Сигнатура метода</dt><dd><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">getTypeOfWine({‘truth_level’:‘h</span> <span class="pre">-</span> <span class="pre">коэффициент</span> <span class="pre">достоверности</span> <span class="pre">двойной</span> <span class="pre">точности</span> <span class="pre">(double)</span> <span class="pre">’,</span> <span class="pre">‘Sig’:’value’,})</span></code></dt><dd><p>string - тип выходного параметра, который принимает одно из значений множества: {teinturier – красное, blanc-de-noirs – белое, blush – розовое вино, ‘ramato’ – оранжевое вино}. Регулируя значение уровня h, производится настройка алгоритмов машинного обучения.
+Так как запросы обрабатываются асинхронно, то следует учесть время ожидания отклика от сервера – latency.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="post">
+<h2>POST:<a class="headerlink" href="#post" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p>асинхронный метод регуирования температуры вина:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">setAsincTemRegulare([‘dT’:’t’,</span> <span class="pre">‘Sig’])</span></code></dt><dd><p>Eсли метод принят в обработку, и поставлен в очередь, то вернется ответ 200 и номер в очереди.
+dT если значение t&lt;0 – то идет процесс охлаждения относительно текущего значения температуры вина, если t&gt;0 – то происходит процесс нагревания вина,  НО! Важно помнить, что метод вернет ошибку, в случае, если на момент запроса объем вина в iWine менее 30%.
+Тогда, вы получите ответ от http-Сервера 200, и код ошибки (недостаточно объема) – 64375.</p>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>асинхронный метод регуирования температуры вина:</p></li>
+</ul>
+<hr class="docutils" />
+<blockquote>
+<div><blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">setAsincMixWine([‘time’:’t’,</span> <span class="pre">‘Sig’])</span></code></p>
+</div></blockquote>
+<p>Если метод принят в обработку, и поставлен в очередь, то  вернется ответ 200 и номер в очереди.
+T – значение времени взбалтывания для насыщения вина воздухом в минутах, максимальное значние 60, минимальное значение 7.
+.. danger:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Важно помнить, что метод вернет ошибку 254 в случае 100% заполнения iWine.
+В случае полного объема, возможен разлив вина при взбалтывании. Воизбежание этого события, метод вернет ошибку 365
+А при 30% заполнении графина iWine будет передан код ошибки –-270, так как данного объема вина не достаточно для взбалтывания.
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">iWine_doc</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption"><span class="caption-text">СОДЕРЖАНИЕ:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Введение</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-api.html">Использование API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wifi-lan-connection.html">Подключение к локальной сети через WiFi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sig-generation.html">Генерация удостоверяющей подписи</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Подробное описание API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get">GET:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post">POST:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Типичные проблемы и их решения</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Часто задаваемые вопросы</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="sig-generation.html" title="предыдущая глава">Генерация удостоверяющей подписи</a></li>
+      <li>Next: <a href="troubleshooting.html" title="следующая глава">Типичные проблемы и их решения</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, mikle-P.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api-functions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

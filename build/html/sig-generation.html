@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Документация API iWine &#8212; документация iWine_doc 0.0.1</title>
+    <title>Генерация удостоверяющей подписи &#8212; документация iWine_doc 0.0.1</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,8 @@
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
-    <link rel="next" title="Введение" href="introduction.html" />
+    <link rel="next" title="Типичные проблемы и их решения" href="troubleshooting.html" />
+    <link rel="prev" title="Подключение к локальной сети через WiFi" href="wifi-lan-connection.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,28 +33,24 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="api-iwine">
-<h1>Документация API iWine<a class="headerlink" href="#api-iwine" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">СОДЕРЖАНИЕ:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Введение</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary-api.html">Использование API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wifi-lan-connection.html">Подключение к локальной сети через WiFi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sig-generation.html">Генерация удостоверяющей подписи</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-functions.html">Подробное описание API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-functions.html#get">GET:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-functions.html#post">POST:</a></li>
+  <div class="section" id="id1">
+<h1>Генерация удостоверяющей подписи<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Для обращения по API iWine необходимо иметь в качестве обязательного параметра подписи запросов (Sig), который использования на стороне встроенного web-сервера для распознавания «свой-чужой».
+Sig формируется по правилу:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Необходимо сформировать первую часть подписи p1Sig, используя md5(текущая дата в формате POSIX/UNIX-time - это большое целое число).</p></li>
+<li><p>Далее берем 6-ти символьный код p2Sig, который располагается на обложке паспорта устройства. В данных символах зашифрована серия и номер устройства, что обеспечивает уникальность устройства.</p></li>
+<li><p>Конкатенируем «p1Sig» и «p2Sig» (дописываем в конец к «p1Sig» код с паспорта устройства «p2Sig»).</p></li>
+</ol>
+</div></blockquote>
+<p>Вы получили подпись Sig для обращения к API-интерфейсу iWine. Sig предназначена для распознавания приходящих на HTTP-сервер iWine запросов:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>«своих» - запросы с корректной Sig, по которым будет высылаться ответ;</p></li>
+<li><p>«чужих» - запросы с неверной Sig, по которым не происходит отправки ответа.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Типичные проблемы и их решения</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#ip-dhcp">IP адрес устройтва меняется, при использовании DHCP.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#http">Устройство не отвечает на сетвые http-запросы?</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Часто задаваемые вопросы</a></li>
-</ul>
-</div>
+</div></blockquote>
 </div>
 
 
@@ -63,7 +60,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">iWine_doc</a></h1>
+<h1 class="logo"><a href="index.html">iWine_doc</a></h1>
 
 
 
@@ -74,12 +71,11 @@
 
 <h3>Навигация</h3>
 <p class="caption"><span class="caption-text">СОДЕРЖАНИЕ:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Введение</a></li>
 <li class="toctree-l1"><a class="reference internal" href="summary-api.html">Использование API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wifi-lan-connection.html">Подключение к локальной сети через WiFi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sig-generation.html">Генерация удостоверяющей подписи</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-functions.html">Подробное описание API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Генерация удостоверяющей подписи</a></li>
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Типичные проблемы и их решения</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Часто задаваемые вопросы</a></li>
 </ul>
@@ -87,8 +83,9 @@
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="introduction.html" title="следующая глава">Введение</a></li>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="wifi-lan-connection.html" title="предыдущая глава">Подключение к локальной сети через WiFi</a></li>
+      <li>Next: <a href="troubleshooting.html" title="следующая глава">Типичные проблемы и их решения</a></li>
   </ul></li>
 </ul>
 </div>
@@ -122,7 +119,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/sig-generation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

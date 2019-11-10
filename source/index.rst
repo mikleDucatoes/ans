@@ -13,6 +13,6 @@
    introduction
    summary-api
    wifi-lan-connection
+   sig-generation
+   api-functions
    troubleshooting
-   faq
-
